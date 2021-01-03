@@ -56,9 +56,10 @@ public class PlayerModuleHolder : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player Module" && !collision.gameObject.GetComponent<Module>().isAttachedToBoss)
         {
+            tempString = collision.gameObject.name.Substring(0, collision.gameObject.name.Length - 7);
             for (int counter = 0; counter < modules.Count; counter++)
             {
-                if (modules[counter].name == collision.gameObject.name)
+                if (modules[counter].name == tempString)
                 {
                     haveCheck = true;
                     counter = modules.Count + 1;
