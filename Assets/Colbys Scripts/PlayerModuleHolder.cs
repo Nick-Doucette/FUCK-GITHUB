@@ -13,6 +13,7 @@ public class PlayerModuleHolder : MonoBehaviour
 
     public int activeModule = 0;
     private bool haveCheck = false;
+    private string tempString;
 
     // Start is called before the first frame update
     void Start()
@@ -65,13 +66,15 @@ public class PlayerModuleHolder : MonoBehaviour
             }
 
             if (!haveCheck)
-            { 
-                modules.Add(gameObject.transform.Find(collision.gameObject.name).gameObject);
-                Debug.Log("picked up " + collision.gameObject.name);
+            {
+                tempString = collision.gameObject.name.Substring(0, collision.gameObject.name.Length - 7);
+                modules.Add(gameObject.transform.Find(tempString).gameObject);
+                Debug.Log("picked up " + tempString);
             }
+            tempString = null;
             haveCheck = false;
         }
     }
-
+    //(Clone)
 
 }

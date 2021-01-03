@@ -250,6 +250,7 @@ MonoBehaviour:
   moduleOnline: 1
   gunModule: 0
   isClicking: 0
+  tranformBurstList: []
 --- !u!61 &608357947
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -622,6 +623,7 @@ MonoBehaviour:
   moduleOnline: 1
   gunModule: 1
   isClicking: 0
+  tranformBurstList: []
 --- !u!1 &1756805058
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,6 +786,7 @@ MonoBehaviour:
   moduleOnline: 1
   gunModule: 1
   isClicking: 0
+  tranformBurstList: []
 --- !u!1 &5882536796831727967
 GameObject:
   m_ObjectHideFlags: 0
@@ -1091,6 +1094,7 @@ MonoBehaviour:
   moduleOnline: 1
   gunModule: 0
   isClicking: 0
+  tranformBurstList: []
 --- !u!1001 &5882536797569428532
 PrefabInstance:
   m_ObjectHideFlags: 0
