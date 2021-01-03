@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Alexs Scene.unity
     guid: a724ccb064bcda043a9d34fd9ad546d0
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Colbys Scene.unity
     guid: 5c7910a158a79a543ac3b3227a0f96d8
   - enabled: 0
@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Pats Scene.unity
     guid: 62b7d263229bf3440a0db5c20520e49a
+  - enabled: 1
+    path: Assets/Scenes/Colbys Second Scene.unity
+    guid: 91b0f88639191b84fb256f6c7d5cd45c
   m_configObjects: {}
