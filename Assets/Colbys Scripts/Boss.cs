@@ -16,6 +16,7 @@ public class Boss : MonoBehaviour
     public Transform[] lvl1ModPos;
     public Transform[] lvl2ModPos;
     public Transform[] lvl3ModPos;
+    public Transform[] lvl4ModPos;
 
     private int numberOfModules;
     [SerializeField]
@@ -38,6 +39,7 @@ public class Boss : MonoBehaviour
     private Quaternion[] lvl1QuatList;
     private Quaternion[] lvl2QuatList;
     private Quaternion[] lvl3QuatList;
+    private Quaternion[] lvl4QuatList;
 
     private float waterDamageModifier = 1f;
     private float iceDamageModifier = 1f;
@@ -83,6 +85,13 @@ public class Boss : MonoBehaviour
     Quaternion lvlThreeQuatThree= Quaternion.Euler(0, 0, 180);
     Quaternion lvlThreeQuatFour = Quaternion.Euler(0, 0, 105);
     Quaternion lvlThreeQuatFive= Quaternion.Euler(0, 0, 38);
+    
+    Quaternion lvlFourQuatOne= Quaternion.Euler(0, 0, 302);
+    Quaternion lvlFourQuatTwo= Quaternion.Euler(0, 0, 240);
+    Quaternion lvlFourQuatThree= Quaternion.Euler(0, 0, 180);
+    Quaternion lvlFourQuatFour= Quaternion.Euler(0, 0, 122);
+    Quaternion lvlFourQuatFive= Quaternion.Euler(0, 0, 60);
+    Quaternion lvlFourQuatSix= Quaternion.Euler(0, 0, 0);
 
 
 
@@ -95,6 +104,7 @@ public class Boss : MonoBehaviour
         lvl1QuatList = new Quaternion[3];
         lvl2QuatList = new Quaternion[4];
         lvl3QuatList = new Quaternion[5];
+        lvl4QuatList = new Quaternion[6];
 
         lvl1QuatList[0] = lvlOneQuatOne;
         lvl1QuatList[1] = lvlOneQuatTwo;
@@ -111,6 +121,12 @@ public class Boss : MonoBehaviour
         lvl3QuatList[3] = lvlThreeQuatFour;
         lvl3QuatList[4] = lvlThreeQuatFive;
      
+        lvl4QuatList[0] = lvlFourQuatOne;
+        lvl4QuatList[1] = lvlFourQuatTwo;
+        lvl4QuatList[2] = lvlFourQuatThree;
+        lvl4QuatList[3] = lvlFourQuatFour;
+        lvl4QuatList[4] = lvlFourQuatFive;
+        lvl4QuatList[5] = lvlFourQuatSix;
 
         health = maxHealth;
         anim = GetComponent<Animator>();
@@ -130,6 +146,10 @@ public class Boss : MonoBehaviour
 
             case 3:
                 numberOfModules = lvl3ModPos.Length;
+                break;
+
+            case 4: 
+                numberOfModules = lvl4ModPos.Length;
                 break;
         }
        
@@ -189,7 +209,7 @@ public class Boss : MonoBehaviour
 
         for(counter = 0; counter <= moduleList.Length - 1; counter++)
         {
-            int randVal = UnityEngine.Random.Range(0, numberOfModules - 1);
+            int randVal = UnityEngine.Random.Range(0, 4);
 
             moduleList[counter] = ModulePrefabs[randVal];
             moduleList[counter].GetComponent<Module>().SetModuleOnline(false);
@@ -210,6 +230,12 @@ public class Boss : MonoBehaviour
                     moduleList[counter].transform.position = lvl3ModPos[counter].position;
                     instantiatedList.Add(Instantiate(moduleList[counter], lvl3ModPos[counter].position, lvl3QuatList[counter], lvl3ModPos[counter].transform));
                     break;
+
+                case 4:
+                    moduleList[counter].transform.position = lvl4ModPos[counter].position;
+                    instantiatedList.Add(Instantiate(moduleList[counter], lvl4ModPos[counter].position, lvl4QuatList[counter], lvl4ModPos[counter].transform));
+                    break;
+
             }
             
 
@@ -256,7 +282,10 @@ public class Boss : MonoBehaviour
                     break;
 
                 case 4:
-
+                    for (counter = 0; counter <= lvl4ModPos.Length - 1; counter++)
+                    {
+                        lvl4QuatList[counter] = lvl4ModPos[counter].rotation;
+                    }
                     break;
             }
             

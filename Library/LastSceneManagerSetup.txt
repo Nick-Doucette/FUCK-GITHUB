@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/Colbys Third Scene.unity
+- path: Assets/Scenes/Colbys Fourth Scene.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
