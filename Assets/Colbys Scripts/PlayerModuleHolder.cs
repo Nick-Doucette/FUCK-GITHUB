@@ -68,7 +68,6 @@ public class PlayerModuleHolder : MonoBehaviour
 
             if (!haveCheck)
             {
-                tempString = collision.gameObject.name.Substring(0, collision.gameObject.name.Length - 7);
                 modules.Add(gameObject.transform.Find(tempString).gameObject);
                 Debug.Log("picked up " + tempString);
             }
