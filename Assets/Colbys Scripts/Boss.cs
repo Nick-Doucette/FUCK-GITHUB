@@ -7,11 +7,15 @@ using System;
 
 public class Boss : MonoBehaviour
 {
+    [SerializeField]
+    private GameLogic gameLogic;
+
     public GameObject[] ModulePrefabs;
 
    
     public Transform[] lvl1ModPos;
-
+    public Transform[] lvl2ModPos;
+    public Transform[] lvl3ModPos;
 
     private int numberOfModules;
     [SerializeField]
@@ -31,9 +35,9 @@ public class Boss : MonoBehaviour
 
     private List<GameObject> instantiatedList;
 
-    private Quaternion[] quatList;
-
-    private Vector3[] vecList;
+    private Quaternion[] lvl1QuatList;
+    private Quaternion[] lvl2QuatList;
+    private Quaternion[] lvl3QuatList;
 
     private float waterDamageModifier = 1f;
     private float iceDamageModifier = 1f;
@@ -66,19 +70,47 @@ public class Boss : MonoBehaviour
     // A rotation 60 degrees around the z-axis
     Quaternion lvlOneQuatThree = Quaternion.Euler(0, 0, 60);
 
+
+
+    Quaternion lvlTwoQuatOne = Quaternion.Euler(0, 0, 0);
+    Quaternion lvlTwoQuatTwo = Quaternion.Euler(0, 0, 270);
+    Quaternion lvlTwoQuatThree = Quaternion.Euler(0, 0, 180);
+    Quaternion lvlTwoQuatFour = Quaternion.Euler(0, 0, 90);
+    
+    
+    Quaternion lvlThreeQuatOne = Quaternion.Euler(0, 0, 324);
+    Quaternion lvlThreeQuatTwo = Quaternion.Euler(0, 0, 252);
+    Quaternion lvlThreeQuatThree= Quaternion.Euler(0, 0, 180);
+    Quaternion lvlThreeQuatFour = Quaternion.Euler(0, 0, 105);
+    Quaternion lvlThreeQuatFive= Quaternion.Euler(0, 0, 38);
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
-        quatList = new Quaternion[3];
-        vecList = new Vector3[3];
+        gameLogic = GameObject.FindGameObjectWithTag("GameLogic").GetComponent<GameLogic>();
 
-        vecList[0] = lvl1ModPos[0].rotation.eulerAngles;
-        vecList[1] = lvl1ModPos[1].rotation.eulerAngles;
-        vecList[2] = lvl1ModPos[2].rotation.eulerAngles;
+        lvl1QuatList = new Quaternion[3];
+        lvl2QuatList = new Quaternion[4];
+        lvl3QuatList = new Quaternion[5];
 
-        quatList[0] = lvlOneQuatOne;
-        quatList[1] = lvlOneQuatTwo;
-        quatList[2] = lvlOneQuatThree;
+        lvl1QuatList[0] = lvlOneQuatOne;
+        lvl1QuatList[1] = lvlOneQuatTwo;
+        lvl1QuatList[2] = lvlOneQuatThree;
+
+        lvl2QuatList[0] = lvlTwoQuatOne;
+        lvl2QuatList[1] = lvlTwoQuatTwo;
+        lvl2QuatList[2] = lvlTwoQuatThree;
+        lvl2QuatList[3] = lvlTwoQuatFour;
+
+        lvl3QuatList[0] = lvlThreeQuatOne;
+        lvl3QuatList[1] = lvlThreeQuatTwo;
+        lvl3QuatList[2] = lvlThreeQuatThree;
+        lvl3QuatList[3] = lvlThreeQuatFour;
+        lvl3QuatList[4] = lvlThreeQuatFive;
+     
 
         health = maxHealth;
         anim = GetComponent<Animator>();
@@ -86,7 +118,21 @@ public class Boss : MonoBehaviour
         stateTimerHold = stateTimer;
         //moduleList = GameObject.FindGameObjectsWithTag("Module");
    
-        numberOfModules = lvl1ModPos.Length;
+        switch(gameLogic.Round)
+        {
+            case 1:
+                numberOfModules = lvl1ModPos.Length;
+                break;
+
+           case 2:
+                numberOfModules = lvl2ModPos.Length;
+                break;
+
+            case 3:
+                numberOfModules = lvl3ModPos.Length;
+                break;
+        }
+       
         instantiatedList = new List<GameObject>();
         SetRandomBossModules();
 
@@ -119,7 +165,7 @@ public class Boss : MonoBehaviour
             {
                 moduleStartIndex = 0;
             }
-            instantiatedList[moduleStartIndex].GetComponent<Module>().SetModuleOnline(true);
+          instantiatedList[moduleStartIndex].GetComponent<Module>().SetModuleOnline(true);
         }
 
             
@@ -130,35 +176,45 @@ public class Boss : MonoBehaviour
 
         if(instantiatedList.Count != 0)
         {
-            tList = new Transform[numberOfModules];
-
-            for (counter = 0; counter <= instantiatedList.Count - 1; counter++)
-            {
-                tList[counter] = instantiatedList[counter].transform;
-            }
+ 
             for (counter = 0; counter <= instantiatedList.Count -1; counter++)
             {
                 Destroy(instantiatedList[counter]);
             }
             instantiatedList.Clear();
         }
-        else
-        {
-            tList = new Transform[0];
-        }
+
 
         moduleList = new GameObject[numberOfModules];
 
         for(counter = 0; counter <= moduleList.Length - 1; counter++)
         {
-            int randVal = UnityEngine.Random.Range(0, numberOfModules);
+            int randVal = UnityEngine.Random.Range(0, numberOfModules - 1);
 
             moduleList[counter] = ModulePrefabs[randVal];
             moduleList[counter].GetComponent<Module>().SetModuleOnline(false);
-            moduleList[counter].transform.position = lvl1ModPos[counter].position;
+
+            switch (gameLogic.Round)
+            {
+                case 1:
+                    moduleList[counter].transform.position = lvl1ModPos[counter].position;
+                    instantiatedList.Add(Instantiate(moduleList[counter], lvl1ModPos[counter].position, lvl1QuatList[counter], lvl1ModPos[counter].transform));
+                    break;
+
+                case 2:
+                    moduleList[counter].transform.position = lvl2ModPos[counter].position;
+                    instantiatedList.Add(Instantiate(moduleList[counter], lvl2ModPos[counter].position, lvl2QuatList[counter], lvl2ModPos[counter].transform));
+                    break;
+
+                case 3:
+                    moduleList[counter].transform.position = lvl3ModPos[counter].position;
+                    instantiatedList.Add(Instantiate(moduleList[counter], lvl3ModPos[counter].position, lvl3QuatList[counter], lvl3ModPos[counter].transform));
+                    break;
+            }
+            
 
             
-            instantiatedList.Add(Instantiate(moduleList[counter], lvl1ModPos[counter].position, quatList[counter], lvl1ModPos[counter].transform));
+            
 
             
 
@@ -176,12 +232,38 @@ public class Boss : MonoBehaviour
         {
             transform.Rotate(new Vector3(0, 0, 1), 50f * Time.deltaTime);
 
-            for(counter = 0; counter <= quatList.Length - 1; counter++)
+            switch(gameLogic.Round)
             {
-                quatList[counter] = lvl1ModPos[counter].rotation;
-            }
+                case 1:
+                    for (counter = 0; counter <= lvl1QuatList.Length - 1; counter++)
+                    {
+                        lvl1QuatList[counter] = lvl1ModPos[counter].rotation;
+                    }
+                    break;
 
-            if(bossAwake)
+                case 2:
+                    for (counter2 = 0; counter2 <= lvl2QuatList.Length - 1; counter2++)
+                    {
+                        lvl2QuatList[counter2] = lvl2ModPos[counter2].rotation;
+                    }
+                    break;
+
+                case 3:
+                    for (counter = 0; counter <= lvl3ModPos.Length - 1; counter++)
+                    {
+                        lvl3QuatList[counter] = lvl3ModPos[counter].rotation;
+                    }
+                    break;
+
+                case 4:
+
+                    break;
+            }
+            
+            
+            
+
+            if (bossAwake)
             {
                 stateTimerHold -= Time.deltaTime;
 
