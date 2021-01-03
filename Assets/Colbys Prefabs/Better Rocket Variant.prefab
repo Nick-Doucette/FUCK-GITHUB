@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6949568750867750514
 Transform:
   m_ObjectHideFlags: 0
@@ -105,10 +105,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 435638973297674603, guid: af16eb09193390a4e8d946be054c8869,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3058081210291946366, guid: af16eb09193390a4e8d946be054c8869,
         type: 3}
       propertyPath: m_Name
       value: Better Rocket Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3058081210291946366, guid: af16eb09193390a4e8d946be054c8869,
+        type: 3}
+      propertyPath: m_TagString
+      value: Rocket
       objectReference: {fileID: 0}
     - target: {fileID: 4485382355153564156, guid: af16eb09193390a4e8d946be054c8869,
         type: 3}
@@ -175,6 +185,11 @@ PrefabInstance:
       propertyPath: lifeTime
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6991558593985563218, guid: af16eb09193390a4e8d946be054c8869,
+        type: 3}
+      propertyPath: explosion
+      value: 
+      objectReference: {fileID: 8171894103937954988}
     - target: {fileID: 6991558593985563218, guid: af16eb09193390a4e8d946be054c8869,
         type: 3}
       propertyPath: damageToDo

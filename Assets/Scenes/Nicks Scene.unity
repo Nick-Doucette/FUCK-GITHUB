@@ -271,6 +271,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &549987483
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 549987485}
+  - component: {fileID: 549987484}
+  m_Layer: 0
+  m_Name: CamController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &549987484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549987483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad1826a33088fc44aed259a8a03fc33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &549987485
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549987483}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.9494543, y: -0.3662024, z: -42.77029}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1542303160
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,6 +433,8 @@ MonoBehaviour:
   boss3: {fileID: 895680176382733334, guid: ea0bd6ef74a4abf45b27359e8fd8c408, type: 3}
   boss4: {fileID: 2223611463479382955, guid: 8da944a022e297044a6f2ba3d1ac1b33, type: 3}
   spawnPoint: {fileID: 0}
+  nextLevelPoints: []
+  onNextLevel: 0
 --- !u!4 &1996056254
 Transform:
   m_ObjectHideFlags: 0

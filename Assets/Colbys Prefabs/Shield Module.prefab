@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6502343259029980088}
   m_Layer: 0
   m_Name: Shield Module
-  m_TagString: Player Module
+  m_TagString: Module
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6502343259029980085}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.8607816, y: 0.9828776, z: -4.445713}
+  m_LocalPosition: {x: 1.2375121, y: 2.4841619, z: -4.445713}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -121,11 +121,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a141bed03f3d45f4db9742cf76bd3d68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moduleElementType: 0
   rateOfFire: 0
   shooting: 0
   isPlayerHolding: 0
-  isAttachedToBoss: 0
+  isAttachedToBoss: 1
   bullet: {fileID: 0}
   shieldModule: 1
   burstModule: 0

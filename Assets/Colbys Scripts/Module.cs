@@ -10,8 +10,7 @@ public class Module : MonoBehaviour
 {
 
     private Transform playerPosition;
-    [SerializeField]
-    private int moduleElementType;        // 0 - fire, 1 - water, 2 - ice,  
+
     [SerializeField]
     private float rateOfFire;
     private float rateOfFireTimer;
@@ -49,6 +48,8 @@ public class Module : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
+
         playerPosition = GameObject.FindGameObjectWithTag("Player").transform;
 
         //tranformBurstList = GameObject.FindGameObjectsWithTag("Burst Direction");
@@ -57,9 +58,7 @@ public class Module : MonoBehaviour
 
         if (gunModule)
         {
-           
-            moduleElementType = UnityEngine.Random.Range(0, 3);
-            
+
             rateOfFireTimer = rateOfFire;
             shootingAction = ShootFunction;
         }
@@ -70,7 +69,7 @@ public class Module : MonoBehaviour
            // moduleElementType = 0;
             
 
-           // boss.EditDamageMod(.5f, moduleElementType);
+            boss.EditDamageMod(.5f);
         }
         else if(burstModule)
         {
@@ -123,10 +122,7 @@ public class Module : MonoBehaviour
 
             }
         }
-        else
-        {
-
-        }
+     
 
         //Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
     }
@@ -135,7 +131,7 @@ public class Module : MonoBehaviour
     {
 
         GameObject holdBullet = Instantiate(bullet,this.transform);
-        holdBullet.GetComponent<Bullet>().SetBulletProperties(moduleElementType, isPlayerHolding);
+        holdBullet.GetComponent<Bullet>().SetBulletProperties(isPlayerHolding);
         directionToShoot = aimPoint - transform.position;
         directionToShoot = directionToShoot.normalized;
         holdBullet.GetComponent<Rigidbody2D>().velocity = directionToShoot * holdBullet.GetComponent<Bullet>().bulletSpeed;
@@ -152,7 +148,7 @@ public class Module : MonoBehaviour
         for(counter = 0; counter <= bulletBurstList.Length -1; counter++)
         {
             bulletBurstList[counter] = Instantiate(bullet, transform);
-            bulletBurstList[counter].GetComponent<Bullet>().SetBulletProperties(moduleElementType, isPlayerHolding);
+            bulletBurstList[counter].GetComponent<Bullet>().SetBulletProperties(isPlayerHolding);
             directionToShoot = tranformBurstList[counter].transform.position - transform.position;
             directionToShoot = directionToShoot.normalized;
 

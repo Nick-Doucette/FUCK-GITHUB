@@ -7,8 +7,6 @@ using CodeMonkey.Utils;
 
 public class Bullet : MonoBehaviour
 {
-
-    private int bulletElementType;            // 0 - fire, 1 - water, 2 - ice,  
     public float bulletSpeed;
     [SerializeField]
     private float lifeTime = 5f;
@@ -17,8 +15,8 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private float damageToDo = 2;
 
-    private CircleCollider2D explosionRadius;
-    private SpriteRenderer explosionDrawing;
+
+    public GameObject explosion;
     public bool isRocket = false;
 
 
@@ -28,8 +26,8 @@ public class Bullet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         if (isRocket)
         {
-            explosionRadius = GetComponentInChildren<CircleCollider2D>();
-            explosionDrawing = GetComponentInChildren<SpriteRenderer>();
+            
+            explosion = GameObject.FindGameObjectWithTag("Explosion Radius");
         }
 
     }
@@ -50,15 +48,14 @@ public class Bullet : MonoBehaviour
             lifeTime -= Time.deltaTime;
             if (lifeTime <= 0)
             {
-                EnableExplosion();
-                
+                //EnableExplosion();     EXPLOSIONS ARE BUGGED
+                Destroy(gameObject);
             }
         }
     }
 
-    public void SetBulletProperties(int type, bool isPlayerHolding)
+    public void SetBulletProperties( bool isPlayerHolding)
     {
-        this.bulletElementType = type;
         this.playerBullet = isPlayerHolding;
     }
 
@@ -79,7 +76,7 @@ public class Bullet : MonoBehaviour
                 if (playerBullet)
                 {
                     Debug.Log("hit boss");
-                    collision.GetComponent<Boss>().TakeDamage(damageToDo, bulletElementType);
+                    collision.GetComponent<Boss>().TakeDamage(damageToDo);
                     Destroy(gameObject);
                 }
 
@@ -90,15 +87,15 @@ public class Bullet : MonoBehaviour
 
     private void EnableExplosion()
     {
-        explosionRadius.enabled = true;
-        explosionDrawing.enabled = true;
+        explosion.GetComponent<Collider2D>().enabled = true;
+        explosion.GetComponent<DisplayExplosion>().exposionOn();
         rb.velocity = Vector3.zero;
-        DisableExplosion();
+        //DisableExplosion();
     }
 
     private void DisableExplosion()
     {
-        StartCoroutine(waitingCoroutine());
+        //StartCoroutine(waitingCoroutine());
 
         
 

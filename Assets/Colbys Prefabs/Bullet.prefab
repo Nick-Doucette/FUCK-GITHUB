@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6454950927528278098}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,6 +50,7 @@ MonoBehaviour:
   lifeTime: 5
   rb: {fileID: 0}
   damageToDo: 1
+  explosion: {fileID: 0}
   isRocket: 0
 --- !u!50 &170000092134220404
 Rigidbody2D:

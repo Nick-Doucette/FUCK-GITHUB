@@ -41,9 +41,9 @@ public class Boss : MonoBehaviour
     private Quaternion[] lvl3QuatList;
     private Quaternion[] lvl4QuatList;
 
-    private float waterDamageModifier = 1f;
-    private float iceDamageModifier = 1f;
-    private float fireDamageModifier = 1f;
+    [SerializeField]
+    private float DamageModifier = 1f;
+
     [SerializeField]
     private float stateTimer = 5f;
     [SerializeField]
@@ -94,7 +94,7 @@ public class Boss : MonoBehaviour
     Quaternion lvlFourQuatSix= Quaternion.Euler(0, 0, 0);
 
 
-
+    int checkForShields = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -256,6 +256,23 @@ public class Boss : MonoBehaviour
     {
         if(!deathTrigger)
         {
+            for(counter = 0; counter <= instantiatedList.Count -1; counter++)
+            {
+                if (!instantiatedList[counter].GetComponent<Module>().shieldModule)
+                {
+                    checkForShields++;
+                }
+            }
+            if(checkForShields == instantiatedList.Count)
+            {
+                DamageModifier = 1f;
+                checkForShields = 0;
+            }
+            else
+            {
+                checkForShields = 0;
+            }
+
             transform.Rotate(new Vector3(0, 0, 1), 50f * Time.deltaTime);
 
             switch(gameLogic.Round)
@@ -327,66 +344,28 @@ public class Boss : MonoBehaviour
                     instantiatedList[counter].tag = "Player Module";
                 }
                 deathTrigger = true;
+                ExplodeTheBoss();
             }
 
-
-
         }
         
     }
 
 
 
-    public void EditDamageMod(float damageModifier, int elementType)
+    public void EditDamageMod(float damageModifier)
     {
-        switch(elementType)
-        {
-            case 0:
-                fireDamageModifier = damageModifier;
-                waterDamageModifier = 2f;
-                iceDamageModifier = 1f;
-                break;
 
-            case 1:
-                waterDamageModifier = damageModifier;
-                iceDamageModifier = 2f;
-                fireDamageModifier = 1f;
-                break;
-
-            case 2:
-                iceDamageModifier = damageModifier;
-                fireDamageModifier = 2f;
-                waterDamageModifier = 1f;
-                break;
-        }
-        
+        DamageModifier = damageModifier;
+            
     }
 
-    public void TakeDamage(float amountOfDamage, int typeOfDamage)
+    public void TakeDamage(float amountOfDamage)
     {
-        
-
-        switch(typeOfDamage)
-        {
-            case 0:
-                Debug.Log("boss is taking Fire Damage");
-                amountOfDamage = amountOfDamage * fireDamageModifier;
-                health -= amountOfDamage;
-                break;
-
-            case 1:
-              //  Debug.Log("boss is taking Water Damage");
-                amountOfDamage = amountOfDamage * waterDamageModifier;
-                health -= amountOfDamage;
-               // Debug.Log(health);
-                break;
-
-            case 2:
-              //  Debug.Log("boss is taking Ice Damage");
-                amountOfDamage = amountOfDamage * iceDamageModifier;
-                health -= amountOfDamage;
-                break;
-        }
+   
+        amountOfDamage = amountOfDamage * DamageModifier;
+        health -= amountOfDamage;
+              
     }
 
     private void StartBoss()
@@ -395,24 +374,6 @@ public class Boss : MonoBehaviour
         bossAwake = true;
     }
 
-   public void StrightLineUpdate()
-   {
-        rb.velocity = moveDirection * strightLineSpeed;
-        Debug.Log("rb.velocity: " + rb.velocity);
-   }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.CompareTag("Wall"))
-        {
-            wallNormal = collision.contacts[0].normal;
-            moveDirection = Vector2.Reflect(rb.velocity, wallNormal).normalized;
-
-            //moveDirection = bounceDirection;
-
-            rb.velocity = moveDirection * strightLineSpeed;
-        }
-    }
 
     public void OfflineModules()
     {
@@ -432,13 +393,12 @@ public class Boss : MonoBehaviour
         return deathTrigger;
     }
 
-    private void PopulateModuleList()
+    private void ExplodeTheBoss()
     {
-        for(counter = 0; counter <= numberOfModules; counter++)
-        {
-            
-        }
+        //GameObject destructable = (GameObject) Instantiate
+        //GameObject destructable = (GameObject) Instantiate
     }
+
 
 }
 
