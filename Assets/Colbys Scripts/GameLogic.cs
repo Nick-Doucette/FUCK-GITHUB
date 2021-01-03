@@ -6,13 +6,17 @@ using UnityEngine.SceneManagement;
 public class GameLogic : MonoBehaviour
 {
 
-    public BoxCollider2D nextLevel;
+    public GameObject nextLevel;
     public int Round;
     public GameObject boss;
     public GameObject boss2;
     public GameObject boss3;
     public GameObject boss4;
     public Transform spawnPoint;
+
+    public Transform[] nextLevelPoints;
+
+    public bool onNextLevel = false;
     private bool death = false;
     // Start is called before the first frame update
     void Start()
@@ -21,14 +25,22 @@ public class GameLogic : MonoBehaviour
 
         boss = GameObject.FindGameObjectWithTag("Boss");
 
+        int RandValue = Random.Range(0, 4);
+
+        nextLevel.GetComponent<Transform>().position = nextLevelPoints[RandValue].position;
+
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        if(boss.GetComponent<Boss>().GetIsDead() && !death)
+        if(boss.GetComponent<Boss>().GetIsDead() && !death && onNextLevel)
         {
+            int RandValue = Random.Range(0, 4);
+
+            nextLevel.GetComponent<Transform>().position = nextLevelPoints[RandValue].position;
+
             Debug.Log("Dead");
             death = true;
        

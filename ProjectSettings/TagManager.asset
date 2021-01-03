@@ -12,6 +12,7 @@ TagManager:
   - GameLogic
   - Boss Spawn
   - Boss Spawn 2
+  - points
   layers:
   - Default
   - TransparentFX
