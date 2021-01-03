@@ -250,7 +250,15 @@ MonoBehaviour:
   moduleOnline: 1
   gunModule: 0
   isClicking: 0
-  tranformBurstList: []
+  tranformBurstList:
+  - {fileID: 1756805058}
+  - {fileID: 922241211}
+  - {fileID: 688450820}
+  - {fileID: 1095527967}
+  - {fileID: 892369014}
+  - {fileID: 329852607}
+  - {fileID: 1296272029}
+  - {fileID: 903993316}
 --- !u!61 &608357947
 BoxCollider2D:
   m_ObjectHideFlags: 0
