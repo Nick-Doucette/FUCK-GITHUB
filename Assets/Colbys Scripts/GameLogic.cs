@@ -19,6 +19,11 @@ public class GameLogic : MonoBehaviour
     public bool onNextLevel = false;
     private bool death = false;
     // Start is called before the first frame update
+
+    void Awake()
+    {
+        SoundManager.Initialize();
+    }
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);

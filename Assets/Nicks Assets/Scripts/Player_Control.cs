@@ -40,22 +40,23 @@ public class Player_Control : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             moveY = 1;
+            //SoundManager.PlaySound(SoundManager.Sound.PlayerSustainedMove, transform.position);
 
         }
         if (Input.GetKey(KeyCode.S))
         {
             moveY = -1;
-
+            //SoundManager.PlaySound(SoundManager.Sound.PlayerSustainedMove, transform.position);
         }
         if (Input.GetKey(KeyCode.A))
         {
             moveX = -1;
-
+           // SoundManager.PlaySound(SoundManager.Sound.PlayerSustainedMove, transform.position);
         }
         if (Input.GetKey(KeyCode.D))
         {
             moveX = 1;
-
+            //SoundManager.PlaySound(SoundManager.Sound.PlayerSustainedMove, transform.position);
         }
 
         //------------------------------------------------------Shooting code--------------------------------------------------------

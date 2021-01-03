@@ -165,6 +165,7 @@ public class Module : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && !isAttachedToBoss && !isPlayerHolding)
         {
+            SoundManager.PlaySound(SoundManager.Sound.Selection, transform.position);
             Destroy(gameObject);
         }
     }

@@ -26,8 +26,13 @@ public class Bullet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         if (isRocket)
         {
-            
+            lifeTime = 3f;
             explosion = GameObject.FindGameObjectWithTag("Explosion Radius");
+            SoundManager.PlaySound(SoundManager.Sound.RocketFire, transform.position);
+        }
+        else
+        {
+            SoundManager.PlaySound(SoundManager.Sound.GunFire, transform.position);
         }
 
     }
@@ -48,7 +53,7 @@ public class Bullet : MonoBehaviour
             lifeTime -= Time.deltaTime;
             if (lifeTime <= 0)
             {
-                //EnableExplosion();     EXPLOSIONS ARE BUGGED
+                //EnableExplosion();    // EXPLOSIONS ARE BUGGED
                 Destroy(gameObject);
             }
         }
@@ -67,6 +72,7 @@ public class Bullet : MonoBehaviour
             case "Player":
                 if (!playerBullet)
                 {
+                    SoundManager.PlaySound(SoundManager.Sound.PlayerDead, transform.position);
                     Debug.Log("hit player");
                 }
 
@@ -75,6 +81,7 @@ public class Bullet : MonoBehaviour
             case "Boss":
                 if (playerBullet)
                 {
+                    SoundManager.PlaySound(SoundManager.Sound.EnemyHit, transform.position);
                     Debug.Log("hit boss");
                     collision.GetComponent<Boss>().TakeDamage(damageToDo);
                     Destroy(gameObject);
@@ -90,6 +97,7 @@ public class Bullet : MonoBehaviour
         explosion.GetComponent<Collider2D>().enabled = true;
         explosion.GetComponent<DisplayExplosion>().exposionOn();
         rb.velocity = Vector3.zero;
+        SoundManager.PlaySound(SoundManager.Sound.Explosion, transform.position);
         //DisableExplosion();
     }
 
