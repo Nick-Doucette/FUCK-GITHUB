@@ -53,7 +53,7 @@ public class Module : MonoBehaviour
 
         //tranformBurstList = GameObject.FindGameObjectsWithTag("Burst Direction");
 
-        boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
+       // boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
 
         if (gunModule)
         {
@@ -67,10 +67,10 @@ public class Module : MonoBehaviour
         //-------------------------------
         else if(shieldModule)
         {
-            moduleElementType = 0;
+           // moduleElementType = 0;
             
 
-            boss.EditDamageMod(.5f, moduleElementType);
+           // boss.EditDamageMod(.5f, moduleElementType);
         }
         else if(burstModule)
         {
@@ -99,7 +99,7 @@ public class Module : MonoBehaviour
 
             if (isClicking)
             {
-                Debug.Log("Clicking");
+                //Debug.Log("Clicking");
                 shooting = true;
             }
             else
