@@ -376,6 +376,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7599747071175241186, guid: 138dfe71254713b438e260f32d629963,
         type: 3}
+      propertyPath: maxHealth
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7599747071175241186, guid: 138dfe71254713b438e260f32d629963,
+        type: 3}
       propertyPath: lvl4ModPos.Array.size
       value: 6
       objectReference: {fileID: 0}
