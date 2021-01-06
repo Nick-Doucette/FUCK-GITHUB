@@ -233,8 +233,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ceab3131cb08f4da94bd84a47c287a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextLevel: {fileID: 0}
   Round: 2
   boss: {fileID: 0}
+  boss2: {fileID: 0}
+  boss3: {fileID: 0}
+  boss4: {fileID: 0}
+  spawnPoint: {fileID: 0}
+  nextLevelPoints: []
+  onNextLevel: 0
 --- !u!4 &1435128510
 Transform:
   m_ObjectHideFlags: 0

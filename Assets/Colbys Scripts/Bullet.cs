@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using CodeMonkey.MonoBehaviours;
 using CodeMonkey.Utils;
+using UnityEngine.SceneManagement;
 
 public class Bullet : MonoBehaviour
 {
@@ -19,10 +20,12 @@ public class Bullet : MonoBehaviour
     public GameObject explosion;
     public bool isRocket = false;
 
-
+    
+    private GameObject player;
 
     private void Start()
     {
+        player = GameObject.Find("Player");
         rb = GetComponent<Rigidbody2D>();
         if (isRocket)
         {
@@ -72,8 +75,10 @@ public class Bullet : MonoBehaviour
             case "Player":
                 if (!playerBullet)
                 {
+                    
                     SoundManager.PlaySound(SoundManager.Sound.PlayerDead, transform.position);
-                    Debug.Log("hit player");
+                    player.GetComponent<PlayerHealth>().startDeath();
+                    
                 }
 
                 break;

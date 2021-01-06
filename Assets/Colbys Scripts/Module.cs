@@ -40,6 +40,10 @@ public class Module : MonoBehaviour
 
     private Boss boss;
 
+    public GameObject pc;
+
+    private GameLogic gl;
+
     private GameObject[] bulletBurstList;
     public GameObject[] tranformBurstList;
 
@@ -48,8 +52,9 @@ public class Module : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gl = GameObject.FindGameObjectWithTag("GameLogic").GetComponent<GameLogic>();
         boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
-
+        pc = GameObject.FindGameObjectWithTag("ourPlayer");
         playerPosition = GameObject.FindGameObjectWithTag("Player").transform;
 
         //tranformBurstList = GameObject.FindGameObjectsWithTag("Burst Direction");
@@ -96,7 +101,7 @@ public class Module : MonoBehaviour
                 aimPoint = playerPosition.position;
             }
 
-            if (isClicking)
+            if (isClicking && pc.GetComponent<Player_Control>().playerCanMove)
             {
                 //Debug.Log("Clicking");
                 shooting = true;
@@ -149,6 +154,7 @@ public class Module : MonoBehaviour
         {
             bulletBurstList[counter] = Instantiate(bullet, transform);
             bulletBurstList[counter].GetComponent<Bullet>().SetBulletProperties(isPlayerHolding);
+            //bulletBurstList[counter].GetComponent<Bullet>().transform.rotation = Quaternion.Euler(bulletBurstList[counter].GetComponent<Bullet>().rb.transform.up);
             directionToShoot = tranformBurstList[counter].transform.position - transform.position;
             directionToShoot = directionToShoot.normalized;
 
@@ -166,6 +172,7 @@ public class Module : MonoBehaviour
         if (collision.gameObject.tag == "Player" && !isAttachedToBoss && !isPlayerHolding)
         {
             SoundManager.PlaySound(SoundManager.Sound.Selection, transform.position);
+            gl.addScore(10);
             Destroy(gameObject);
         }
     }

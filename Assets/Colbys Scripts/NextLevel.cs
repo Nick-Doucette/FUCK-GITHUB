@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class NextLevel : MonoBehaviour
 {
-    private GameLogic gl;
+    public bool standingOn = false;
 
     private void Start()
     {
-        gl = GameObject.FindGameObjectWithTag("GameLogic").GetComponent<GameLogic>();
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -16,7 +16,7 @@ public class NextLevel : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
             Debug.Log("Player is over thingy");
-            gl.onNextLevel = true;
+            standingOn = true;
         }
     }
 
@@ -24,8 +24,8 @@ public class NextLevel : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            
-            gl.onNextLevel = false;
+
+            standingOn = false;
         }
     }
 }

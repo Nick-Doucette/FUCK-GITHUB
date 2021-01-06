@@ -20,9 +20,9 @@ public class Boss : MonoBehaviour
 
     private int numberOfModules;
     [SerializeField]
-    private float health;
+    public float health;
     [SerializeField]
-    private float maxHealth;
+    public float maxHealth;
 
     public bool deathTrigger = false;
     private bool bossAwake = false;
@@ -65,6 +65,8 @@ public class Boss : MonoBehaviour
 
     Transform[] tList;
 
+    private BreakAppart destructableThing; 
+
     // A rotation 300 degrees around the z-axis
     Quaternion lvlOneQuatOne = Quaternion.Euler(0, 0, 300);
     // A rotation 180 degrees around the z-axis
@@ -99,6 +101,8 @@ public class Boss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        destructableThing = GetComponentInChildren<BreakAppart>();
+
         gameLogic = GameObject.FindGameObjectWithTag("GameLogic").GetComponent<GameLogic>();
 
         lvl1QuatList = new Quaternion[3];
@@ -321,14 +325,7 @@ public class Boss : MonoBehaviour
                     stateTimerHold = stateTimer;
                 }
             }
-            
-
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                randomVector = UtilsClass.GetRandomDir();
-                GameObject holdItem = Instantiate(item1, transform, false);
-                holdItem.GetComponent<Rigidbody2D>().AddForce(randomVector * 1800f);
-            }
+           
 
 
             if (health <= 0)
@@ -344,7 +341,7 @@ public class Boss : MonoBehaviour
                     instantiatedList[counter].tag = "Player Module";
                 }
                 deathTrigger = true;
-                ExplodeTheBoss();
+               // destructableThing.ExplodeThisGameObject();
             }
 
         }

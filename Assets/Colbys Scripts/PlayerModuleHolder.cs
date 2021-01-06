@@ -37,9 +37,10 @@ public class PlayerModuleHolder : MonoBehaviour
         //check if we are switching modules
         if (currentModule != modules[activeModule])
         {
-            currentModule.GetComponent<SpriteRenderer>().enabled = false;       //disable sprite for current module
-            currentModule = modules[activeModule];                              //set the new current module
-            currentModule.GetComponent<SpriteRenderer>().enabled = true;        //enable sprite for the new current module
+            currentModule.gameObject.transform.Find("Sprite").GetComponent<SpriteRenderer>().enabled = false;       //disable sprite for current module
+            currentModule.GetComponent<Module>().shooting = false;
+            currentModule = modules[activeModule];                                                                  //set the new current module
+            currentModule.gameObject.transform.Find("Sprite").GetComponent<SpriteRenderer>().enabled = true;        //enable sprite for the new current module
         }
 
         if (Input.GetMouseButtonDown(0) && currentModule != null)

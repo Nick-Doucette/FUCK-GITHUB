@@ -16,7 +16,9 @@ public class Player_Control : MonoBehaviour
     private float moveX = 0f;
     private float moveY = 0f;
     private float angle = 0f;
-    private const float MOVE_SPEED = 6f;
+    private const float MOVE_SPEED = 12f;
+
+    public bool playerCanMove = true;
 
     // Start is called before the first frame update
     private void Awake()
@@ -29,10 +31,18 @@ public class Player_Control : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //---------------------Get Player Input-----------------------------
-        shooting = Input.GetMouseButton(0);
-        playerMousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
-        //------------------------------------------------------------------
+        if(playerCanMove)
+        {
+            //---------------------Get Player Input-----------------------------
+            shooting = Input.GetMouseButton(0);
+            playerMousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
+            //------------------------------------------------------------------
+        }
+        else
+        {
+            rigidbody2D.velocity = Vector2.zero;
+        }
+
 
         moveX = 0f;
         moveY = 0f;
@@ -66,7 +76,11 @@ public class Player_Control : MonoBehaviour
         }
         //---------------------------------------------------------------------------------------------------------------------------
 
-        moveDirection = new Vector3(moveX, moveY).normalized;
+        if(playerCanMove)
+        {
+            moveDirection = new Vector3(moveX, moveY).normalized;
+        }
+
     }
 
     private void FixedUpdate()

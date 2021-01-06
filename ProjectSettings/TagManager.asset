@@ -13,6 +13,11 @@ TagManager:
   - Boss Spawn
   - Boss Spawn 2
   - points
+  - Bullet
+  - Rocket
+  - ScoreText
+  - DebugText
+  - ourPlayer
   layers:
   - Default
   - TransparentFX
