@@ -102,6 +102,7 @@
     <Compile Include="Assets\Colbys Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\Colbys Scripts\PlayerModuleHolder.cs" />
     <Compile Include="Assets\Colbys Scripts\PlayerTest.cs" />
+    <Compile Include="Assets\Colbys Scripts\TutorialLogic.cs" />
     <Compile Include="Assets\Colbys Scripts\UIScripts.cs" />
     <Compile Include="Assets\Nicks Assets\Scripts\Cam_Control.cs" />
     <Compile Include="Assets\Nicks Assets\Scripts\Player_Control.cs" />

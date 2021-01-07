@@ -97,6 +97,10 @@ public class GameLogic : MonoBehaviour
                         boss = Instantiate(boss4, spawnPoint, true);
                         death = false;
                         break;
+
+                    default:
+                        boss = Instantiate(boss, spawnPoint, true);
+                        break;
                 }
             }
         }

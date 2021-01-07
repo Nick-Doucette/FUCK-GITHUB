@@ -272,6 +272,20 @@ PolygonCollider2D:
       - {x: 2.1499999, y: -6.045}
       - {x: 2.1499999, y: -5.4849997}
       - {x: 2.28, y: -5.4849997}
+--- !u!114 &8138061005932520190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2223611463479382955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 486dd6b4fa24b0e43bce7f8e8fd1c861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destructableBoss: {fileID: 3563057845554726955, guid: 99002f04e73a7e846a2cd49c629ea28f,
+    type: 3}
 --- !u!1 &4697580351848890743
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,7 +391,7 @@ PrefabInstance:
     - target: {fileID: 7599747071175241186, guid: 138dfe71254713b438e260f32d629963,
         type: 3}
       propertyPath: maxHealth
-      value: 35
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7599747071175241186, guid: 138dfe71254713b438e260f32d629963,
         type: 3}

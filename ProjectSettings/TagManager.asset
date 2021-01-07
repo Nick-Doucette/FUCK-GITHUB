@@ -18,6 +18,9 @@ TagManager:
   - ScoreText
   - DebugText
   - ourPlayer
+  - Grunt
+  - TutorialText
+  - whatToDoText
   layers:
   - Default
   - TransparentFX

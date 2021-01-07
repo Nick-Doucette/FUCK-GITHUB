@@ -155,6 +155,10 @@ public class Boss : MonoBehaviour
             case 4: 
                 numberOfModules = lvl4ModPos.Length;
                 break;
+
+            default:
+                numberOfModules = lvl1ModPos.Length;
+                break;
         }
        
         instantiatedList = new List<GameObject>();
@@ -240,6 +244,11 @@ public class Boss : MonoBehaviour
                     instantiatedList.Add(Instantiate(moduleList[counter], lvl4ModPos[counter].position, lvl4QuatList[counter], lvl4ModPos[counter].transform));
                     break;
 
+                default:
+                    moduleList[counter].transform.position = lvl1ModPos[counter].position;
+                    instantiatedList.Add(Instantiate(moduleList[counter], lvl1ModPos[counter].position, lvl1QuatList[counter], lvl1ModPos[counter].transform));
+                    break;
+
             }
             
 
@@ -308,6 +317,13 @@ public class Boss : MonoBehaviour
                         lvl4QuatList[counter] = lvl4ModPos[counter].rotation;
                     }
                     break;
+
+                default:
+                    for (counter = 0; counter <= lvl1QuatList.Length - 1; counter++)
+                    {
+                        lvl1QuatList[counter] = lvl1ModPos[counter].rotation;
+                    }
+                    break;
             }
             
             
@@ -341,7 +357,7 @@ public class Boss : MonoBehaviour
                     instantiatedList[counter].tag = "Player Module";
                 }
                 deathTrigger = true;
-               // destructableThing.ExplodeThisGameObject();
+                destructableThing.ExplodeThisGameObject();
             }
 
         }

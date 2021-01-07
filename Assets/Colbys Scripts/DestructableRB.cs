@@ -16,7 +16,7 @@ public class DestructableRB : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float randTourqe = UnityEngine.Random.Range(-50, 50);
+        float randTourqe = UnityEngine.Random.Range(-200, 200);
         float randForceX = UnityEngine.Random.Range(forceDirection.x - 50, forceDirection.x + 50);
         float randForceY = UnityEngine.Random.Range(forceDirection.y - 50, forceDirection.y + 50);
 

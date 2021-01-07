@@ -30,8 +30,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -624,7 +626,7 @@ ScriptsOnlyBuild:
     className: VerticalLayoutGroup
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 963038867df638a3a5378b57d1571390
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIScripts
@@ -904,6 +906,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SoundAssets
+  - hash:
+      serializedVersion: 2
+      Hash: 6ad27145c8d64c05a5abf302d18af4bb
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TutorialLogic
   platform: 20
   scenePathNames:
   - Assets/Scenes/Main Menu.unity
