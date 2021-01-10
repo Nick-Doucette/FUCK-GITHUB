@@ -14,6 +14,8 @@ public class DestructableRB : MonoBehaviour
 
     Rigidbody2D rb;
 
+    [SerializeField]
+    private float lifeTime = 10f;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +36,10 @@ public class DestructableRB : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        lifeTime -= Time.deltaTime;
+        if (lifeTime <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

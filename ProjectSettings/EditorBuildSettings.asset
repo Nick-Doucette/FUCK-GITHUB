@@ -14,22 +14,25 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: b22820f6aaf74d040aacad7b3b78a01a
+  - enabled: 1
+    path: Assets/Scenes/Win Scene.unity
+    guid: 58a9ddde36f77b148aeb4d0319844e06
   - enabled: 0
     path: Assets/Scenes/Alexs Scene.unity
     guid: a724ccb064bcda043a9d34fd9ad546d0
   - enabled: 0
-    path: Assets/Scenes/Darrens Scene.unity
-    guid: 2592e05abc2ee2a49a8081f971d6c216
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
     path: Assets/Scenes/Nicks Scene.unity
     guid: 041616cd084e6024ca182ef56fc04679
   - enabled: 0
-    path: Assets/Scenes/Pats Scene.unity
-    guid: 62b7d263229bf3440a0db5c20520e49a
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/Colbys Second Scene.unity
-    guid: 91b0f88639191b84fb256f6c7d5cd45c
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/Colbys Third Scene.unity
-    guid: 013d0feb07bf6724f8537f967ebb5e28
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

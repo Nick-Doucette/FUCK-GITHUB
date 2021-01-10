@@ -84,22 +84,26 @@ public class GameLogic : MonoBehaviour
                 switch (Round)
                 {
                     case 2:
-                        boss = Instantiate(boss2, spawnPoint, true);
+                        boss = Instantiate(boss2, spawnPoint.position, Quaternion.identity);
                         death = false;
                         break;
 
                     case 3:
-                        boss = Instantiate(boss3, spawnPoint, true);
+                        boss = Instantiate(boss3, spawnPoint.position, Quaternion.identity);
                         death = false;
                         break;
 
                     case 4:
-                        boss = Instantiate(boss4, spawnPoint, true);
+                        boss = Instantiate(boss4, spawnPoint.position, Quaternion.identity);
                         death = false;
                         break;
 
+                    case 5:
+                        SceneManager.LoadScene("Win Scene");
+                        break;
+
                     default:
-                        boss = Instantiate(boss, spawnPoint, true);
+                        boss = Instantiate(boss, spawnPoint.position, Quaternion.identity);
                         break;
                 }
             }

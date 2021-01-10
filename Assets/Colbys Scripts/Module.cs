@@ -55,7 +55,7 @@ public class Module : MonoBehaviour
         gl = GameObject.FindGameObjectWithTag("GameLogic").GetComponent<GameLogic>();
         boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
         pc = GameObject.FindGameObjectWithTag("ourPlayer");
-        playerPosition = GameObject.FindGameObjectWithTag("Player").transform;
+        playerPosition = pc.transform;
 
         //tranformBurstList = GameObject.FindGameObjectsWithTag("Burst Direction");
 
@@ -88,7 +88,10 @@ public class Module : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(!isAttachedToBoss && !isPlayerHolding)
+        {
+            moduleOnline = false;
+        }
         if (!shieldModule)
         {
             if (isPlayerHolding && !shieldModule)
@@ -99,6 +102,7 @@ public class Module : MonoBehaviour
             else if(!isPlayerHolding && !shieldModule)
             {
                 aimPoint = playerPosition.position;
+                
             }
 
             if (isClicking && pc.GetComponent<Player_Control>().playerCanMove)
@@ -135,7 +139,7 @@ public class Module : MonoBehaviour
     private void ShootFunction()
     {
 
-        GameObject holdBullet = Instantiate(bullet,this.transform);
+        GameObject holdBullet = Instantiate(bullet,transform.position,Quaternion.identity);
         holdBullet.GetComponent<Bullet>().SetBulletProperties(isPlayerHolding);
         directionToShoot = aimPoint - transform.position;
         directionToShoot = directionToShoot.normalized;
@@ -152,7 +156,7 @@ public class Module : MonoBehaviour
         rateOfFire = 2f;
         for(counter = 0; counter <= bulletBurstList.Length -1; counter++)
         {
-            bulletBurstList[counter] = Instantiate(bullet, transform);
+            bulletBurstList[counter] = Instantiate(bullet,transform.position,Quaternion.identity);
             bulletBurstList[counter].GetComponent<Bullet>().SetBulletProperties(isPlayerHolding);
             //bulletBurstList[counter].GetComponent<Bullet>().transform.rotation = Quaternion.Euler(bulletBurstList[counter].GetComponent<Bullet>().rb.transform.up);
             directionToShoot = tranformBurstList[counter].transform.position - transform.position;
@@ -180,5 +184,14 @@ public class Module : MonoBehaviour
     public void SetModuleOnline(bool online)
     {
         this.moduleOnline = online;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (!isPlayerHolding && !shieldModule)
+        {
+            Gizmos.DrawWireSphere(aimPoint, 2f);
+        }
+            
     }
 }

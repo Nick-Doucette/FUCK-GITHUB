@@ -21,7 +21,7 @@ public class followingBehavior : StateMachineBehaviour
     private Rigidbody2D rb;
     private Vector2 directionToMove;
     private string debugDistance;
-
+    Boss boss;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -29,6 +29,8 @@ public class followingBehavior : StateMachineBehaviour
         rb = animator.GetComponent<Rigidbody2D>();
         distanceFromPlayer = Vector3.Distance(playerTransform.position, animator.transform.position);
 
+        boss = animator.GetComponent<Boss>();
+        boss.bossAwake = true;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

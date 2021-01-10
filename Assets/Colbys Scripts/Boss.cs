@@ -25,7 +25,8 @@ public class Boss : MonoBehaviour
     public float maxHealth;
 
     public bool deathTrigger = false;
-    private bool bossAwake = false;
+
+    public bool bossAwake = false;
 
     public GameObject item1;
     private Vector2 randomVector;
@@ -170,8 +171,8 @@ public class Boss : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         idleToStartState = StartBoss;
-        FunctionTimer.Create(idleToStartState, 1f);
-        
+        FunctionTimer.Create(idleToStartState, 2f);
+        bossAwake = false;
         moveDirection = UtilsClass.GetRandomDir();
     }
 
@@ -260,7 +261,7 @@ public class Boss : MonoBehaviour
         }
 
         counter = 0;
-        ChangeOnlineModules();
+        
     }
 
    
@@ -269,12 +270,16 @@ public class Boss : MonoBehaviour
     {
         if(!deathTrigger)
         {
-            for(counter = 0; counter <= instantiatedList.Count -1; counter++)
+
+            
+
+            for (counter = 0; counter <= instantiatedList.Count -1; counter++)
             {
                 if (!instantiatedList[counter].GetComponent<Module>().shieldModule)
                 {
                     checkForShields++;
                 }
+
             }
             if(checkForShields == instantiatedList.Count)
             {
@@ -347,9 +352,10 @@ public class Boss : MonoBehaviour
             if (health <= 0)
             {
                 anim.SetBool("isDead", true);
+                
                 for (counter = 0; counter <= instantiatedList.Count - 1; counter++)
                 {
-                    instantiatedList[counter].GetComponent<Module>().SetModuleOnline(false);
+                    //instantiatedList[counter].GetComponent<Module>().SetModuleOnline(false);
                     instantiatedList[counter].GetComponent<Module>().isAttachedToBoss = false;
                     instantiatedList[counter].transform.SetParent(null);
 
@@ -358,8 +364,13 @@ public class Boss : MonoBehaviour
                 }
                 deathTrigger = true;
                 destructableThing.ExplodeThisGameObject();
+               
             }
 
+        }
+        else
+        {
+            OfflineModules();
         }
         
     }
@@ -384,6 +395,7 @@ public class Boss : MonoBehaviour
     private void StartBoss()
     {
         anim.SetBool("isFollowing", true);
+        ChangeOnlineModules();
         bossAwake = true;
     }
 
@@ -393,10 +405,8 @@ public class Boss : MonoBehaviour
         
         for(counter = 0; counter <= moduleList.Length - 1; counter++)
         {
-            if(!deathTrigger)
-            {
-                moduleList[counter].GetComponent<Module>().SetModuleOnline(false);
-            }
+            
+               moduleList[counter].GetComponent<Module>().SetModuleOnline(false);
            
         }
     }
