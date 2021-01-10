@@ -43,7 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258014ff280a70c4581d17c32bd7aaa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerAttack: {fileID: 8300000, guid: e9935b21e1877664587845c7c8c86614, type: 3}
   soundAudioClipArray:
   - sound: 0
     audioClip: {fileID: 8300000, guid: b8606defb7d618e419f5c59d754f14bd, type: 3}
@@ -69,3 +68,6 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 78806df905d30294da54d4b9d0aad2b5, type: 3}
   - sound: 11
     audioClip: {fileID: 8300000, guid: 92bfe8fc46f942140878fe877204a49f, type: 3}
+  - sound: 12
+    audioClip: {fileID: 8300000, guid: 1484bc1044eae7a47af912476424dba6, type: 3}
+  soundAudioMusicArray: []

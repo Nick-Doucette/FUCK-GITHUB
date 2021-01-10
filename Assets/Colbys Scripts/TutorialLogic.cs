@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
+using CodeMonkey.Utils;
+using CodeMonkey.MonoBehaviours;
 
 public class TutorialLogic : MonoBehaviour
 {
@@ -13,11 +16,14 @@ public class TutorialLogic : MonoBehaviour
     private Text tutorialText;
     private Text whatToDoText;
     private GameLogic gl;
+    private bool trigger = true;
+    private Action delayKilledBoss;
 
     // Start is called before the first frame update
     void Start()
     {
-       
+        delayKilledBoss = KilledBoss;
+
         tutorialText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<Text>();
         whatToDoText = GameObject.FindGameObjectWithTag("whatToDoText").GetComponent<Text>();
         tutorialText.text = tutorialMessages[progressCounter];
@@ -28,9 +34,10 @@ public class TutorialLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gl.boss.GetComponent<Boss>().health <= 0 && !bossDead)
+        if(gl.boss.GetComponent<Boss>().health <= 0 && !bossDead && trigger)
         {
-            KilledBoss();
+            FunctionTimer.Create(delayKilledBoss, 1f);
+            trigger = false;
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {

@@ -89,6 +89,7 @@ public class Bullet : MonoBehaviour
                     SoundManager.PlaySound(SoundManager.Sound.EnemyHit, transform.position);
                     Debug.Log("hit boss");
                     collision.GetComponent<Boss>().TakeDamage(damageToDo);
+                    
                     Destroy(gameObject);
                 }
 

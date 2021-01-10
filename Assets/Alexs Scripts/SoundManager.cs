@@ -31,7 +31,7 @@ public static class SoundManager
         GunFire,                //on gun fire
         BurstFire,              //on burst fire
         RocketFire,             //when you shoot the bfROCKET
-
+        BossDead,               //when boss dies
     }
 
     private static Dictionary<Sound, float> soundTimerDictionary;

@@ -352,7 +352,7 @@ public class Boss : MonoBehaviour
             if (health <= 0)
             {
                 anim.SetBool("isDead", true);
-                
+                SoundManager.PlaySound(SoundManager.Sound.BossDead);
                 for (counter = 0; counter <= instantiatedList.Count - 1; counter++)
                 {
                     //instantiatedList[counter].GetComponent<Module>().SetModuleOnline(false);
@@ -388,6 +388,7 @@ public class Boss : MonoBehaviour
     {
    
         amountOfDamage = amountOfDamage * DamageModifier;
+        DamagePopup.Create(transform.position, amountOfDamage);
         health -= amountOfDamage;
               
     }
