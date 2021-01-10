@@ -10,7 +10,7 @@ public class Cam_Control : MonoBehaviour
 
     private void Awake()
     {
-        playerPos = GameObject.FindGameObjectWithTag("Player").transform;
+        playerPos = GameObject.FindGameObjectWithTag("ourPlayer").transform;
         mainCam = GameObject.FindGameObjectWithTag("MainCamera");
     }
 
