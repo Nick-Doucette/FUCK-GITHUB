@@ -22,7 +22,7 @@ public class BreakAppart : MonoBehaviour
 
     public void ExplodeThisGameObject()
     {
-        GameObject destructable = (GameObject)Instantiate(destructableBoss);
+        GameObject destructable = Instantiate(destructableBoss);
 
         destructable.transform.position = transform.position;
     }

@@ -5,13 +5,14 @@ using UnityEngine.UI;
 
 public class TutorialLogic : MonoBehaviour
 {
-
+    private bool bossDead = false;
     private bool paused = true;
     public int progressCounter = 0;
     public string[] tutorialMessages;
     public string[] whatDoToMessages;
     private Text tutorialText;
     private Text whatToDoText;
+    private GameLogic gl;
 
     // Start is called before the first frame update
     void Start()
@@ -21,12 +22,16 @@ public class TutorialLogic : MonoBehaviour
         whatToDoText = GameObject.FindGameObjectWithTag("whatToDoText").GetComponent<Text>();
         tutorialText.text = tutorialMessages[progressCounter];
         whatToDoText.text = whatDoToMessages[progressCounter];
+        gl = GameObject.FindGameObjectWithTag("GameLogic").GetComponent<GameLogic>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(gl.boss.GetComponent<Boss>().health <= 0 && !bossDead)
+        {
+            KilledBoss();
+        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             progressCounter++;
@@ -39,11 +44,12 @@ public class TutorialLogic : MonoBehaviour
                     whatToDoText.text = whatDoToMessages[progressCounter];
                     break;
 
-                case 2:
-                    
-                    break;
             }
-            
+            if(bossDead)
+            {
+                paused = false;
+            }
+
         }
 
         if(paused)
@@ -56,5 +62,13 @@ public class TutorialLogic : MonoBehaviour
             tutorialText.text = "";
             whatToDoText.text = "";
         }
+    }
+
+    public void KilledBoss()
+    {
+        paused = true;
+        bossDead = true;
+        tutorialText.text = "You've defeated the core! hopefully thats all there is to it.";
+        whatToDoText.text = "Stand on the red circle to continue.";
     }
 }

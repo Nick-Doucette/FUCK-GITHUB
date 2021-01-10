@@ -7,6 +7,8 @@ public class DestructableRB : MonoBehaviour
     [SerializeField]
     Vector2 forceDirection;
 
+    Vector2 inputDirection;
+
     [SerializeField]
     float trq;
 
@@ -16,15 +18,15 @@ public class DestructableRB : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float randTourqe = UnityEngine.Random.Range(-200, 200);
-        float randForceX = UnityEngine.Random.Range(forceDirection.x - 50, forceDirection.x + 50);
-        float randForceY = UnityEngine.Random.Range(forceDirection.y - 50, forceDirection.y + 50);
+        float randTourqe = UnityEngine.Random.Range(-trq, trq);
+        float randForceX = UnityEngine.Random.Range(-forceDirection.x, forceDirection.x);
+        float randForceY = UnityEngine.Random.Range(-forceDirection.y, forceDirection.y);
 
-        forceDirection.x = randForceX;
-        forceDirection.y = randForceY;
+        inputDirection.x = randForceX;
+        inputDirection.y = randForceY;
 
         rb = GetComponent<Rigidbody2D>();
-        rb.AddForce(forceDirection);
+        rb.AddForce(inputDirection);
         rb.AddTorque(randTourqe);
 
     }
